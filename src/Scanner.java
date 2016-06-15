@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Takes a directory and scans it for files
@@ -8,6 +8,6 @@ import java.util.List;
 public interface Scanner {
 
     //Method to scan a given folder for the files it contains
-    List<String> scanFolder(String folderName);
+    ArrayList<String> scanFolder();
 
 }

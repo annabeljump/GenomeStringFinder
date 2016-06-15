@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -11,7 +10,7 @@ import java.util.List;
 public class ScannerImpl implements Scanner {
 
     private String folderName;
-    private ArrayList<String> fileLocations;
+    public ArrayList<String> fileLocations;
 
 
     /**
@@ -19,18 +18,17 @@ public class ScannerImpl implements Scanner {
      * checked for the desired sequence, scans the folder for all files within.
      * All potential files are checked and subfolders and other non-files are weeded out.
      * Returns an Array with all of the file names in for further processing.
-     * @param folderName, the String containing the path to the folder to be scanned
      * @return an ArrayList of Strings containing the file names in the folder
      */
 
     @Override
-    public List<String> scanFolder(String folderName) {
+    public ArrayList<String> scanFolder() {
         File directory = new File(folderName);
         File[] files = directory.listFiles();
         for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
-            this.fileLocations.add(files[i].getName());
-                System.out.println(fileLocations);
+            fileLocations.add(files[i].toString());
+              //  System.out.println(fileLocations);
                 System.out.println(files[i]);
             }
         }
@@ -40,6 +38,7 @@ public class ScannerImpl implements Scanner {
     //Constructors for the Scanner
     public ScannerImpl(String directoryName) {
         this.folderName = directoryName;
+        this.fileLocations = null;
     }
 
     public ScannerImpl() {
