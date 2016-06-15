@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ScannerImpl implements Scanner {
 
     private String folderName;
-    public ArrayList<String> fileLocations;
+    private ArrayList<String> fileLocations;
 
 
     /**
@@ -27,7 +27,7 @@ public class ScannerImpl implements Scanner {
         File[] files = directory.listFiles();
         for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
-            fileLocations.add(files[i].toString());
+            fileLocations.add(files[i].getPath());
               //  System.out.println(fileLocations);
                 System.out.println(files[i]);
             }
@@ -38,12 +38,12 @@ public class ScannerImpl implements Scanner {
     //Constructors for the Scanner
     public ScannerImpl(String directoryName) {
         this.folderName = directoryName;
-        this.fileLocations = null;
+        this.fileLocations = new ArrayList<>();
     }
 
     public ScannerImpl() {
         this.folderName = null;
-        this.fileLocations = null;
+        this.fileLocations = new ArrayList<>();
     }
 
     //Getters and Setters
