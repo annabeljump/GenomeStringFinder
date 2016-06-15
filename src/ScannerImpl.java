@@ -10,9 +10,8 @@ import java.util.List;
  */
 public class ScannerImpl implements Scanner {
 
-    private String[] fileArray;
     private String folderName;
-    private List<String> fileLocations;
+    private ArrayList<String> fileLocations;
 
 
     /**
@@ -21,23 +20,44 @@ public class ScannerImpl implements Scanner {
      * All potential files are checked and subfolders and other non-files are weeded out.
      * Returns an Array with all of the file names in for further processing.
      * @param folderName, the String containing the path to the folder to be scanned
-     * @return an Array of Strings containing the file names in the folder
+     * @return an ArrayList of Strings containing the file names in the folder
      */
 
     @Override
-    public String[] scanFolder(String folderName) {
+    public List<String> scanFolder(String folderName) {
         File directory = new File(folderName);
         File[] files = directory.listFiles();
         for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
             this.fileLocations.add(files[i].getName());
+                System.out.println(fileLocations);
+                System.out.println(files[i]);
             }
         }
-        return fileArray;
+        return fileLocations;
     }
 
+    //Constructors for the Scanner
     public ScannerImpl(String directoryName) {
         this.folderName = directoryName;
     }
 
+    public ScannerImpl() {
+        this.folderName = null;
+        this.fileLocations = null;
+    }
+
+    //Getters and Setters
+
+    public void setFolderName(String s){
+        this.folderName = s;
+    }
+
+    public String getFolderName() {
+        return this.folderName;
+    }
+
+    public ArrayList<String> getFileLocations() {
+        return this.fileLocations;
+    }
 }

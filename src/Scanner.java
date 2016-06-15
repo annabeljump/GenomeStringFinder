@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Takes a directory and scans it for files
  * File names are sorted into an Array
@@ -6,6 +8,6 @@
 public interface Scanner {
 
     //Method to scan a given folder for the files it contains
-    String[] scanFolder(String folderName);
+    List<String> scanFolder(String folderName);
 
 }
