@@ -42,6 +42,8 @@ public class Finder {
 
             if (searchString.toLowerCase().contains(matchString.toLowerCase())) {
                 matchFiles.add(currentFile);
+            } else {
+                matchFiles.add("No matches found...");
             }
         }
         return matchFiles;
