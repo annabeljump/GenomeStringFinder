@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.File;
 
 
 /**
@@ -13,23 +11,43 @@ public class Finder {
     private String currentFile;
     private String searchString;
     private ArrayList<String> matchFiles;
+    private String matchString;
 
-    public Finder(ArrayList<String> fP) {
-        this.filePaths = fP;
+    public Finder(String s) {
+        this.filePaths = new ArrayList<>();
+        this.currentFile = "";
+        this.searchString = "";
+        this.matchFiles = new ArrayList<>();
+        this.matchString = s;
     }
 
-    public ArrayList<String> findSequenceMatches() {
+    public ArrayList<String> findMatches(ArrayList<String> fileNames) throws FileNotFoundException {
 
+        this.filePaths = fileNames;
+
+        for(int i = 0; i < filePaths.size(); i++) {
+
+            this.currentFile = filePaths.get(i);
+
+            File now = new File(currentFile);
+            BufferedReader buff = new BufferedReader(new FileReader(now));
+            StringBuffer contents = new StringBuffer();
+            try {
+                String line = buff.readLine();
+                while (line != null) {
+                    contents.append(line);
+                    line = buff.readLine();
+                }
+                this.searchString = contents.toString();
+                buff.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (searchString.toLowerCase().contains(matchString.toLowerCase())) {
+                matchFiles.add(currentFile);
+            }
+        }
+        return matchFiles;
     }
-    //File file = new File(fileLocation);
-
-    //BufferedReader br = new BufferedReader(new FileReader(file));
-    //StringBuffer fileContents = new StringBuffer();
-    //String line = br.readLine();
-    //while (line != null) {
-      //  fileContents.append(line);
-      //  line = br.readLine();
-    //}
-
-    //br.close();
 }
