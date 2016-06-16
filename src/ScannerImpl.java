@@ -17,7 +17,7 @@ public class ScannerImpl implements Scanner {
      * Takes a String being the file path of the folder containing the files to be
      * checked for the desired sequence, scans the folder for all files within.
      * All potential files are checked and subfolders and other non-files are weeded out.
-     * Returns an Array with all of the file names in for further processing.
+     * Returns an Array with all of the file paths in for further processing.
      * @return an ArrayList of Strings containing the file names in the folder
      */
 
@@ -28,8 +28,9 @@ public class ScannerImpl implements Scanner {
         for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
             fileLocations.add(files[i].getPath());
-              //  System.out.println(fileLocations);
-                System.out.println(files[i]);
+                //Two lines of code I used to test if working:
+               // System.out.println(fileLocations);
+               // System.out.println(files[i]);
             }
         }
         return fileLocations;
