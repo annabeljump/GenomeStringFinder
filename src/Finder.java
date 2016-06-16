@@ -21,28 +21,24 @@ public class Finder {
         this.matchString = s;
     }
 
-    public ArrayList<String> findMatches(ArrayList<String> fileNames) throws FileNotFoundException {
+    public ArrayList<String> findMatches(ArrayList<String> fileNames) throws IOException {
 
         this.filePaths = fileNames;
 
-        for(int i = 0; i < filePaths.size(); i++) {
+        for (String filePath : filePaths) {
 
-            this.currentFile = filePaths.get(i);
+            this.currentFile = filePath;
 
             File now = new File(currentFile);
             BufferedReader buff = new BufferedReader(new FileReader(now));
-            StringBuffer contents = new StringBuffer();
-            try {
-                String line = buff.readLine();
-                while (line != null) {
-                    contents.append(line);
-                    line = buff.readLine();
-                }
-                this.searchString = contents.toString();
-                buff.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            StringBuilder contents = new StringBuilder();
+            String line = buff.readLine();
+            while (line != null) {
+                contents.append(line);
+                line = buff.readLine();
             }
+            this.searchString = contents.toString();
+            buff.close();
 
             if (searchString.toLowerCase().contains(matchString.toLowerCase())) {
                 matchFiles.add(currentFile);
