@@ -9,7 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String pathName = "/Users/annabeljump/Documents/MSc/Project";
+        //TODO accept keyboard input and make interactive output
+
+        String pathName = "/Users/annabeljump/Documents/Test";
         Scanner sc = new ScannerImpl(pathName);
 
         ArrayList<String> scanned = new ArrayList<>();
