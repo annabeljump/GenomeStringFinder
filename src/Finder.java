@@ -40,6 +40,8 @@ public class Finder {
             this.searchString = contents.toString();
             buff.close();
 
+            //TODO stop this matching single characters
+
             if (searchString.toLowerCase().contains(matchString.toLowerCase())) {
                 matchFiles.add(currentFile);
             } else {
