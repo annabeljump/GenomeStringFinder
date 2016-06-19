@@ -21,4 +21,4 @@ the Genome String Finder files. Hit Enter. Then, type javac [Filename Here].java
 
 5. Enjoy!
 
-Any time you wish to use the script after this point, you merely need to follow steps 4 i-iii
+Any time you wish to use the script again, you merely need to follow steps 4 i-iii
