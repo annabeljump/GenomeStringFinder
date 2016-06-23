@@ -23,33 +23,45 @@ public class Main {
         System.out.println("/Users/you/folder/searchfolder or similar if you are on Mac, or");
         System.out.println("on Windows, this should be something like c:\\User\\folder\\etc.)");
         System.out.println("");
-        System.out.println("Please enter the folder path now:");
 
-        String pathName = System.console().readLine();
-        Scanner sc = new ScannerImpl(pathName);
+        Boolean finished = false;
+        Boolean done = false;
 
-        System.out.print("Thank you! Scanning.");
-        System.out.print(".");
-        System.out.print(".");
-        System.out.print(".");
-        System.out.print(".");
-        System.out.println(".");
+        do {
+            System.out.println("Please enter the folder path now:");
+            System.out.println("(To quit, type Y)");
 
-        ArrayList<String> scanned = new ArrayList<>();
-        scanned = sc.scanFolder();
+            String pathName = System.console().readLine();
+            if (pathName == "Y" || pathName == "y") finished = true;
+            Scanner sc = new ScannerImpl(pathName);
 
-        System.out.println("Please enter the target sequence you wish to search for:");
+            System.out.print("Thank you! Scanning.");
+            System.out.print(".");
+            System.out.print(".");
+            System.out.print(".");
+            System.out.print(".");
+            System.out.println(".");
 
-        String target = System.console().readLine();
-        Finder findME = new Finder(target);
+            ArrayList<String> scanned = new ArrayList<>();
+            scanned = sc.scanFolder();
 
-        System.out.println("Your sequence was matched in:");
+            do {
+                System.out.println("Please enter the target sequence you wish to search for:");
 
-        try {
-            System.out.println(findME.findMatches(scanned));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                String target = System.console().readLine();
+                Finder findME = new Finder(target);
 
+                System.out.println("Your sequence was matched in:");
+
+                try {
+                    System.out.println(findME.findMatches(scanned));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Do you wish to search again? Enter Y / N");
+                String again = System.console().readLine();
+                if (again == "Y" || again == "y") done = true;
+            } while (!done);
+        } while (!finished);
     }
 }
